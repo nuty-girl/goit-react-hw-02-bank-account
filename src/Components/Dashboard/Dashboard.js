@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import T from 'prop-types';
 import shortid from 'shortid';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Dashboard.module.css';
 import Controls from '../Controls/Controls';
@@ -32,9 +32,7 @@ export default class Dashboard extends Component {
   notifyErrorAmount = () => toast('Введите сумму для проведения операции!');
 
   notifyErrorFunds = () =>
-    toast('На счету недостаточно средств для проведения операции!', {
-      containerId: 'Funds',
-    });
+    toast('На счету недостаточно средств для проведения операции!');
 
   countFunds = () => {
     return this.state.transactions.reduce(

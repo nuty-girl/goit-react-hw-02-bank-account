@@ -15,9 +15,20 @@ export default class Controls extends Component {
   };
 
   getInputValue = e => {
+    const amount = Number(e.currentTarget.value);
     this.setState({
-      inputValue: e.currentTarget.value,
+      inputValue: amount,
     });
+  };
+
+  handleDeposit = () => {
+    this.props.onDeposit(this.state.inputValue);
+    this.reset();
+  };
+
+  handleWithdraw = () => {
+    this.props.onWithdraw(this.state.inputValue);
+    this.reset();
   };
 
   reset = () => {
@@ -27,20 +38,19 @@ export default class Controls extends Component {
   };
 
   render() {
-    const { onDeposit, onWithdraw } = this.props;
     const { inputValue } = this.state;
     return (
       <section className={styles.controls}>
         <input
           type="number"
           name="amount"
-          value={this.inputValue}
+          value={inputValue}
           onChange={this.getInputValue}
         />
-        <button type="button" onClick={() => onDeposit(inputValue)}>
+        <button type="button" onClick={this.handleDeposit}>
           Deposit
         </button>
-        <button type="button" onClick={() => onWithdraw(inputValue)}>
+        <button type="button" onClick={this.handleWithdraw}>
           Withdraw
         </button>
       </section>
